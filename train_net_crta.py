@@ -41,13 +41,14 @@ transform = transforms.Compose([transforms.ToTensor(),
                                 ])
 
 script_path = os.path.dirname(os.path.realpath(__file__))
+print(script_path)
 
 ###################
 ## Train dataset ##
 ###################
 
 
-train_ds = SteerDataSet(os.path.join(script_path, '../..', 'images_fast', 'train'), '.jpg', transform)
+train_ds = SteerDataSet(os.path.join(script_path, '..', 'images', 'train'), '.jpg', transform)
 print("The train dataset contains %d images " % len(train_ds))
 
 #data loader nicely batches images for the training process and shuffles (if desired)
@@ -97,7 +98,7 @@ plt.show()
 ## Validation dataset ##
 ########################
 
-val_ds = SteerDataSet(os.path.join(script_path, '../..', 'images_fast', 'val'), '.jpg', transform)
+val_ds = SteerDataSet(os.path.join(script_path, '..', 'images', 'val'), '.jpg', transform)
 print("The val dataset contains %d images " % len(val_ds))
 
 #data loader nicely batches images for the training process and shuffles (if desired)
@@ -201,7 +202,7 @@ for epoch in range(NUM_EPOCHS):
         # stop_lbls = stop_lbls.to(device)
 
         optimizer.zero_grad()
-        print(imgs.shape)
+
         drive_logits = net(imgs)
 
         

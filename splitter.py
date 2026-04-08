@@ -4,12 +4,12 @@ import shutil
 
 
 #Create the train and validation folders
-os.makedirs("../../images_fast/train", exist_ok=True)
-os.makedirs("../../images_fast/val", exist_ok=True)
+os.makedirs("images/train", exist_ok=True)
+os.makedirs("images/val", exist_ok=True)
 
 #List all the images from images folder and remapp their cmd_vel.angular.z to the classifications [0,1,2,3,4] that represents [sharp left, left, straight, right, sharp right]
 data = []
-for img_id in os.listdir("../../images_fast/images"):
+for img_id in os.listdir("images/images"):
     data.append([img_id, img_id.split(".")[1]])
     # data.append([img_id.split(".")[0], img_id.split(".")[1]])
 
@@ -55,8 +55,8 @@ for i in cls_4_ind:
 
 #Copy the images to the train/val folders
 for i in names_balanced:
-    shutil.copy(os.path.join("../../images_fast/images", i), os.path.join("../../images_fast/val", i))    
+    shutil.copy(os.path.join("images/images", i), os.path.join("images/val", i))    
 
-for i in os.listdir("../../images_fast/images"):
+for i in os.listdir("images/images"):
     if i not in names_balanced:
-        shutil.copy(os.path.join("../../images_fast/images", i), os.path.join("../../images_fast/train", i))
+        shutil.copy(os.path.join("images/images", i), os.path.join("images/train", i))
